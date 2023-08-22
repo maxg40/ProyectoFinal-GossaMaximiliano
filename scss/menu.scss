@@ -1,0 +1,21 @@
+.sticky-top {
+    position: sticky;
+    top: 0px;
+}
+
+.logo {
+    width: 90px;
+
+
+}
+.navbar-nav a:hover {
+    transition: all 4ms ease-in-out;
+    transform: scale(1,1);
+    border-radius: 10px;
+    border: 1px solid rgb(43, 42, 42);
+    box-shadow: 2px 2px 5px black;
+}
+
+.nav-link {
+    color: black !important;
+}

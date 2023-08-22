@@ -1,0 +1,54 @@
+{
+    "page": 2,
+    "per_page": 6,
+    "total": 12,
+    "total_pages": 2,
+    "data": [
+        {
+            "cant": 7,
+            "nombre": "Wet- Efecto Calor",
+            "description": "Gel lubricante con L-Arginina,crea una sensación de calor en la piel que aumenta de forma inmediata la sensibilidad intensificando las sensaciones.",
+            "img": "https://maxg40.github.io/exoticas/img-sexshop/lubricantes/wetcalor.png"
+        },
+        {
+            "cant": 4,
+            "nombre": "Wet - Natural",
+            "description": "Formulado especialmente para mujeres por mujeres. Wet Naturals Aloe Vera está enriquecido para su bienestar sensual.",
+            "img": "https://maxg40.github.io/exoticas/img-sexshop/lubricantes/wetnatural.png"
+        },       
+        {
+            "cant": 1,
+            "nombre": "Wet - Anal",
+            "description": "Diseñado para dar una lubricación de larga duración. Disfruta sin dolor! Genera una experiencia de mayor confianza y seguridad en la pareja.",
+            "img": "https://maxg40.github.io/exoticas/img-sexshop/lubricantes/wetanal.png"
+        },        
+        {
+            "cant": 5,
+            "nombre": "Producto anonimo",
+            "description": "Sin descriptcion",
+            "img": "https://maxg40.github.io/exoticas/img/QRsexshop.jpeg"
+        },        
+        {
+            "cant": 5,
+            "nombre": "Producto anonimo",
+            "description": "Sin descriptcion",
+            "img": "https://maxg40.github.io/exoticas/img/QRsexshop.jpeg"
+        },
+        {
+            "cant": 5,
+            "nombre": "Producto anonimo",
+            "description": "Sin descriptcion",
+            "img": "https://maxg40.github.io/exoticas/img/QRsexshop.jpeg"
+        }, 
+        {
+            "cant": 5,
+            "nombre": "Producto anonimo",
+            "description": "Sin descriptcion",
+            "img": "https://maxg40.github.io/exoticas/img/QRsexshop.jpeg"
+        } 
+    ],
+    "support": {
+        "url": "https://reqres.in/#support-heading",
+        "text": "To keep ReqRes free, contributions towards server costs are appreciated!"
+    }
+}

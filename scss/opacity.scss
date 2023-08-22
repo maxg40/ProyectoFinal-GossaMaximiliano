@@ -1,0 +1,35 @@
+.opacity {
+    display: flex;
+    background-color: black;
+    opacity: 0%;
+    :hover{
+        transition:all 1s ease-in-out;
+        opacity: 80%;
+        height: 80%;
+        
+    }
+}
+.size-boton {
+    display: flex;
+    padding-top: 150px;
+    padding-bottom: 150px;
+}
+@media screen and (max-width: 600px) {
+    .size-boton {
+        padding-top: 80px;
+        padding-bottom: 80px;
+    }    
+}
+@media screen and (max-width: 340px) {
+    .size-boton {
+        padding-top: 50px;
+        padding-bottom: 50px;
+    }    
+}
+
+@media screen and (max-width: 240px) {
+    .size-boton {
+        padding-top: 20px;
+        padding-bottom: 20px;
+    }    
+}

@@ -1,0 +1,104 @@
+footer {
+    display: flex;
+    flex-wrap:wrap;
+    align-content: center;
+    flex-direction: column;
+    position:sticky;
+    bottom: 0;
+    padding-top: 2px;    
+    border-top: 3px ridge white;
+    .conteiner-redes {
+        display: flex;
+        justify-content: space-around;
+        transition: all 4ms ease-in-out;
+        :hover {
+            transform: scale(1.2);
+        }
+    }
+    .img-sizes {
+        height: 30px;
+        width: 30px;
+    }
+    .decor-logo{
+    margin: 5px 10px 10px 10px;
+    display: flex;
+    height: 30px;
+    width: 30px;
+    background-color: #e37482;
+    background-image: linear-gradient(90deg, #e37482 0%, #FF6A88 55%, #ff99a6 100%);    
+    border-radius: 50px;
+    box-shadow: 2px 2px 5px black;
+    }  
+    .copyright {
+        justify-content: center;
+        text-align: center;
+    }
+    
+
+
+}
+
+.conteiner-redes {
+    display: flex;
+    justify-content: space-around;
+    transition: all 4ms ease-in-out;
+    :hover {
+        transform: scale(1.2);
+    }
+}
+
+
+@media screen and (max-width: 700px) {
+    .decor-logo{
+        margin: 3px 5px 5px 5px;
+        display: flex;
+        height: 30px !important;
+        width: 30px !important;
+        background-color: #e37482;
+        background-image: linear-gradient(90deg, #e37482 0%, #FF6A88 55%, #ff99a6 100%);
+        border-radius: 5px;
+        box-shadow: 2px 2px 5px black;
+    }
+    footer {
+        padding: 0;
+        height: 60px;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+    }
+    .copyright{
+        padding-top: 10px;
+        display: flex;
+        flex-direction: column;
+        justify-content:center;
+        text-align: center;
+        align-self: center;
+    }
+}
+
+@media screen and (max-width: 350px) {
+    .decor-logo{
+        margin: 3px 5px 5px 5px;
+        display: flex;
+        height: 5px;
+        width: 5px;
+        background-color: #e37482;
+        background-image: linear-gradient(90deg, #e37482 0%, #FF6A88 55%, #ff99a6 100%);    
+        border-radius: 5px;
+        box-shadow: 2px 2px 5px black;
+    }
+    footer {
+        padding: 0;
+        height: 60px;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+    }
+    .copyright{
+        display: flex;
+        justify-content:center;
+        text-align: center;
+        align-self: center;
+        font-size: 10px;
+    }
+}

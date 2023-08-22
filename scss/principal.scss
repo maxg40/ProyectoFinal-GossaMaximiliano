@@ -1,0 +1,31 @@
+img.size {
+    display: flex;
+    position: relative;
+    width: 50%;
+    height: auto;
+}
+
+
+section{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.form{
+    label{
+        margin: 5px;
+        text-decoration: underline;
+        
+    }
+    input{
+        margin:2px;
+    }
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.bg-gral{
+    background-color: #e37482;
+    background-image: linear-gradient(90deg, #e37482 0%, #FF6A88 55%, #ff99a6 100%);
+}
