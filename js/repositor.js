@@ -32,5 +32,20 @@ const cargarStock = async () => {
 }
 cargarStock()
 }catch (error) {
-    productCards.innerHTML = `<h3>Error al cargar los productos</h3>`
+    const Toast = Swal.mixin({
+        toast: true,
+        position: 'top-end',
+        showConfirmButton: false,
+        timer: 3000,
+        timerProgressBar: true,
+        didOpen: (toast) => {
+            toast.addEventListener('mouseenter', Swal.stopTimer)
+            toast.addEventListener('mouseleave', Swal.resumeTimer)
+        }
+    })
+    
+    Toast.fire({
+        icon: 'error',
+        title: 'Signed in successfully'
+    })
 }
