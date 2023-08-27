@@ -2,10 +2,10 @@ document.addEventListener('DOMContentLoaded', function() {
     let inputNombre = document.getElementById ('nameProduct');
     let inputDescription = document.getElementById ('descriptionProduct');
     let inputImg = document.getElementById ('imgUrl');
-    let inputCant = document.getElementById ('cantProduct');
-    let msj = document.getElementById ('mensaje');
+    let inputCant = document.getElementById ('cantProduct');;
     let enviarButton = document.getElementById('enviarButton');
     let inputVendedor = document.getElementById ('vendedor');
+    let inputPass = document.getElementById('contraseña');
 
     let stock = []; 
 
@@ -18,18 +18,35 @@ document.addEventListener('DOMContentLoaded', function() {
             this.cant = cant;
         }
     }
-
+    
+    
     inputVendedor.onclick =()=>{
-        let pass = prompt('Ingrese contraseña de vendedor');
-        let passCorrecto = 'maxisabe';
-        if (pass === passCorrecto){
-            window.location.href = 'repositor.html';
-        }
-        else{
-            alert ('Contraseña incorrecta')
-        }
         
-    }
+            Swal.fire({
+                title: 'Enter your password',
+                inputLabel: 'Password',
+                html: '<input type="password" name="contraseña" id="contraseña" placeholder="Contraseña de vendedor">',
+                confirmButtonText:'Aceptar',
+            })
+            let password = inputPass;
+            if (password === 'maxisabe') {
+                Swal.fire({
+                    icon:'success',
+                    title: 'Contraseña correcta, ingresará al sitio de reposición',
+                    isConfirmed: 'confirm',
+                })
+                setTimeout(() => {
+                    window.location.href = './repositor.html';
+                },3000)
+            }else{
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Oops...',
+                    text: 'Contraseña incorrecta',
+                    })
+        }
+    
+}
 
     enviarButton.addEventListener('click', function() {
         let nombre = inputNombre.value;
@@ -44,11 +61,39 @@ document.addEventListener('DOMContentLoaded', function() {
                 
             localStorage.setItem("producto", enJSON);
             
-            console.log ('Se cargaron los productos con exito')
-            msj.innerHTML = `<h2>El producto se cargo con exito</h2>`
+            const Toast = Swal.mixin({
+                toast: true,
+                position: 'top-end',
+                showConfirmButton: false,
+                timer: 3000,
+                timerProgressBar: true,
+                didOpen: (toast) => {
+                    toast.addEventListener('mouseenter', Swal.stopTimer)
+                    toast.addEventListener('mouseleave', Swal.resumeTimer)
+                }
+            })
+            
+            Toast.fire({
+                icon: 'success',
+                title: 'El producto se cargo correctamente'
+            })
         }catch (error){
-            console.log ('Error al subir archivos', error);
-            msj.innerHTML= `Error al cargar el producto`
+            const Toast = Swal.mixin({
+                toast: true,
+                position: 'top-end',
+                showConfirmButton: false,
+                timer: 3000,
+                timerProgressBar: true,
+                didOpen: (toast) => {
+                    toast.addEventListener('mouseenter', Swal.stopTimer)
+                    toast.addEventListener('mouseleave', Swal.resumeTimer)
+                }
+            })
+            
+            Toast.fire({
+                icon: 'error',
+                title: 'Error al cargar el producto'
+            })
         }finally {
             const verProducto = JSON.parse(localStorage.getItem("producto"))
             console.log (verProducto);
