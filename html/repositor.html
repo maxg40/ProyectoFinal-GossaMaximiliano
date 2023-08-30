@@ -31,18 +31,16 @@
     </section>
     <article class="form">
         <label for="">Nombre del Producto:</label>
-            <input type="text" name="" id="nameProduct" placeholder="Nombre del producto">
+            <input type="text" name="" id="nameProduct" class="styleInput"  placeholder="Nombre del producto">
         <label for="">Descripción :</label>
-        <textarea id="descriptionProduct" name="textBox" rows="4" cols="30" placeholder="Escribe aquí"></textarea>
+        <textarea id="descriptionProduct" name="textBox" rows="4" cols="30" class="styleInput"  placeholder="Escribe aquí"></textarea>
             <label for="">Imagen del producto:</label>
         <div class="sectorImg">
-            <button id="imgUrl">URL</button> <button id="imgArchivo">Seleccionar archivo</button>
+            <button id="imgUrl"class="styleBtn" >URL</button> <button id="imgArchivo" class="styleBtn">Seleccionar archivo</button>
         </div>
         <label for="">Cantidad:</label>
-            <input type="text" name="cantidad" id="cantProduct" placeholder="Cantidad del producto">
-            <input type="checkbox" name="aceptar" id="aceptar" placeholder="confirmar datos"> 
-            <input type="button" value="Enviar" id="enviarButton">
-        <div id="mensaje"></div>
+            <input type="text" name="cantidad" id="cantProduct" class="styleInput"  placeholder="Cantidad del producto"> 
+            <input type="button" value="Enviar" id="enviarButton" class="styleBtn">
     </article>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script src="../js/stock.js"></script>

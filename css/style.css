@@ -274,4 +274,19 @@ section {
   background-image: linear-gradient(90deg, #e37482 0%, #FF6A88 55%, #ff99a6 100%);
 }
 
+.styleInput {
+  border-radius: 10px;
+  box-shadow: 2px 2px 5px black;
+  margin: 10px 0px 10px 0px;
+  text-align: center;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+.styleBtn {
+  border-radius: 10px;
+  background-image: linear-gradient(90deg, #e37482 0%, #ff99a6 100%);
+  margin: 10px 0px 10px 0px;
+  box-shadow: 2px 2px 5px black;
+}
+
 /*# sourceMappingURL=style.css.map */
