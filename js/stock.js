@@ -1,11 +1,12 @@
 document.addEventListener('DOMContentLoaded', function() {
     let inputNombre = document.getElementById ('nameProduct');
     let inputDescription = document.getElementById ('descriptionProduct');
-    let inputImg = document.getElementById ('imgUrl');
+    let btnImgUrl = document.getElementById ('imgUrl');
+    let btnImgArchivo = document.getElementById ('imgArchivo');
     let inputCant = document.getElementById ('cantProduct');;
     let enviarButton = document.getElementById('enviarButton');
     let inputVendedor = document.getElementById ('vendedor');
-    let inputPass = document.getElementById('contraseña');
+    
 
     let stock = []; 
 
@@ -20,15 +21,19 @@ document.addEventListener('DOMContentLoaded', function() {
     }
     
     
-    inputVendedor.onclick =()=>{
-        
-            Swal.fire({
-                title: 'Enter your password',
-                inputLabel: 'Password',
-                html: '<input type="password" name="contraseña" id="contraseña" placeholder="Contraseña de vendedor">',
+    inputVendedor.onmousemove = async()=> {
+            const {value:password} = await Swal.fire({
+                title: 'Esta ingresando al sector de reposición',
+                inputLabel: 'Ingrese clave de vendedor',
+                input: 'password',
                 confirmButtonText:'Aceptar',
+                inputAttributes: {
+                    maxlength: 10,
+                    autocapitalize: 'off',
+                    autocorrect: 'off',},                
+                allowOutsideClick: 'false',
             })
-            let password = inputPass;
+            
             if (password === 'maxisabe') {
                 Swal.fire({
                     icon:'success',
@@ -46,16 +51,56 @@ document.addEventListener('DOMContentLoaded', function() {
                     })
         }
     
+    }
+
+btnImgArchivo.onclick = async()=>{
+    const { value: imgArchivo } = await Swal.fire({
+        title: 'Select image',
+        input: 'file',
+        inputAttributes: {
+            'accept': 'image/*',
+            'aria-label': 'Upload your profile picture'
+        }
+        })
+        
+        if (imgArchivo) {
+        const reader = new FileReader()
+        reader.onload = (e) => {
+            Swal.fire({
+            title: 'Your uploaded picture',
+            imageUrl: e.target.result,
+            imageAlt: 'The uploaded picture'
+        })
+        const imageSave = JSON.stringify(imgArchivo)
+        localStorage.setItem ("imageFile", imageSave)
+        }
+        }
 }
 
-    enviarButton.addEventListener('click', function() {
-        let nombre = inputNombre.value;
-        let descripcion = inputDescription.value;
-        let img = inputImg.value;
-        let cant =  inputCant.value;
+btnImgUrl.onclick = async()=>{
+    const { value: imgUrl } = await Swal.fire({
+        input: 'url',
+        inputLabel: 'URL de la imagen',
+        inputPlaceholder: 'coloque su URL'
+        })
         
-        try {
-            const productos = new Producto (nombre,descripcion,img,cant);
+        if (imgUrl) {
+        Swal.fire(`Se cargo correctamente`)
+        const imgSaveUrl = JSON.stringify(imgUrl)
+        localStorage.setItem("imageUrl", imgSaveUrl)
+        }
+};
+
+enviarButton.addEventListener('click', function() {
+    const dropImageUrl = JSON.parse(localStorage.getItem("imageUrl"))
+    const droptImageFile = JSON.parse(localStorage.getItem("imageFile"))
+    let nombre = inputNombre.value;
+    let descripcion = inputDescription.value;
+    let cant =  inputCant.value;
+    let img = dropImageUrl || droptImageFile;
+    
+    try {
+        const productos = new Producto (nombre,descripcion,img,cant);
             stock.push (productos);
             const enJSON = JSON.stringify(stock);
                 

@@ -1,17 +1,40 @@
 let inputVendedor = document.getElementById ('vendedor');
-try  {
 
-    inputVendedor.onclick =()=>{
-        let pass = prompt('Ingrese contraseña de vendedor');
-        let passCorrecto = 'maxisabe';
-        if (pass === passCorrecto){
-            window.location.href = './repositor.html';
-        }
-        else{
-            alert ('Contraseña incorrecta')
-        }
+
+inputVendedor.onmousemove = async()=> {
+        const {value:password} = await Swal.fire({
+            title: 'Esta ingresando al sector de reposición',
+            inputLabel: 'Ingrese clave de vendedor',
+            input: 'password',
+            confirmButtonText:'Aceptar',
+            inputAttributes: {
+                maxlength: 10,
+                autocapitalize: 'off',
+                autocorrect: 'off',},                
+            allowOutsideClick: 'false',
+        })
         
+        if (password === 'maxisabe') {
+            Swal.fire({
+                icon:'success',
+                title: 'Contraseña correcta, ingresará al sitio de reposición',
+                isConfirmed: 'confirm',
+            })
+            setTimeout(() => {
+                window.location.href = './repositor.html';
+            },3000)
+        }else{
+            Swal.fire({
+                icon: 'error',
+                title: 'Oops...',
+                text: 'Contraseña incorrecta',
+                })
     }
+
+}
+
+
+try  {
 
 const cargarStock = async () => {
     const resp = await fetch ('../datos.json');
@@ -30,6 +53,7 @@ const cargarStock = async () => {
     </div>`
     });
 }
+
 cargarStock()
 }catch (error) {
     const Toast = Swal.mixin({
