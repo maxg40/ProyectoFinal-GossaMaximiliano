@@ -67,14 +67,16 @@ btnImgArchivo.onclick = async()=>{
         const reader = new FileReader()
         reader.onload = (e) => {
             Swal.fire({
-            title: 'Your uploaded picture',
+            icon: 'success',
+            title: 'Imagen cargada correctamente',
             imageUrl: e.target.result,
             imageAlt: 'The uploaded picture'
         })
         const imageSave = JSON.stringify(imgArchivo)
         localStorage.setItem ("imageFile", imageSave)
-        }
-        }
+    }
+    reader.readAsDataURL(imgArchivo)
+    } 
 }
 
 btnImgUrl.onclick = async()=>{
