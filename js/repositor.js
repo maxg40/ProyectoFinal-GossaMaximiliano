@@ -23,7 +23,8 @@ inputVendedor.onmousemove = async()=> {
             setTimeout(() => {
                 window.location.href = './repositor.html';
             },3000)
-        }else{
+        }
+        else{
             Swal.fire({
                 icon: 'error',
                 title: 'Oops...',
