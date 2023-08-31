@@ -13,7 +13,18 @@ document.addEventListener('DOMContentLoaded', function() {
         let nombre = nombreInput.value;
         let apellido = apellidoInput.value;
         let nacimiento = nacimientoInput.value;
-    
+    try{
+        if ((nombre,apellido,nacimiento) ===''){
+            throw new Error ('Por favor, complete los campos correspondientes')
+            }
+        }catch(error){
+            Swal.fire({
+                icon:'error',
+                title:'Error',
+                text: error.message,
+            })
+            return;
+        }
         let fechaNacimiento = new Date(nacimiento);
         let añoNacimiento = fechaNacimiento.getFullYear();
         
@@ -24,7 +35,6 @@ document.addEventListener('DOMContentLoaded', function() {
         validarEdad (nombre, edadEnAños);
     });
 
-    
 
     const validarEdad = (nombre, edadEnAños) =>  {
         

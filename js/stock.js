@@ -96,9 +96,9 @@ btnImgUrl.onclick = async()=>{
 enviarButton.addEventListener('click', function() {
     const dropImageUrl = JSON.parse(localStorage.getItem("imageUrl"))
     const droptImageFile = JSON.parse(localStorage.getItem("imageFile"))
-    let nombre = inputNombre.value.trim();
-    let descripcion = inputDescription.value.trim();
-    let cant =  inputCant.value.trim();
+    let nombre = inputNombre.value;
+    let descripcion = inputDescription.value;
+    let cant =  inputCant.value;
     let img = dropImageUrl || droptImageFile;
     
     try {
