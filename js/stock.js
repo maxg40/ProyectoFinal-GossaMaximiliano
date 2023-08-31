@@ -96,12 +96,15 @@ btnImgUrl.onclick = async()=>{
 enviarButton.addEventListener('click', function() {
     const dropImageUrl = JSON.parse(localStorage.getItem("imageUrl"))
     const droptImageFile = JSON.parse(localStorage.getItem("imageFile"))
-    let nombre = inputNombre.value;
-    let descripcion = inputDescription.value;
-    let cant =  inputCant.value;
+    let nombre = inputNombre.value.trim();
+    let descripcion = inputDescription.value.trim();
+    let cant =  inputCant.value.trim();
     let img = dropImageUrl || droptImageFile;
     
     try {
+        if ((cant,nombre,img,descripcion)=== ''){
+            throw new Error ('Por favor, ingrese los datos en los campos correspondientes');
+        }
         const productos = new Producto (nombre,descripcion,img,cant);
             stock.push (productos);
             const enJSON = JSON.stringify(stock);
@@ -129,7 +132,7 @@ enviarButton.addEventListener('click', function() {
                 toast: true,
                 position: 'top-end',
                 showConfirmButton: false,
-                timer: 3000,
+                timer: 5000,
                 timerProgressBar: true,
                 didOpen: (toast) => {
                     toast.addEventListener('mouseenter', Swal.stopTimer)
@@ -139,7 +142,7 @@ enviarButton.addEventListener('click', function() {
             
             Toast.fire({
                 icon: 'error',
-                title: 'Error al cargar el producto'
+                title: error.message,
             })
         }finally {
             const verProducto = JSON.parse(localStorage.getItem("producto"))
