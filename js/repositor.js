@@ -1,8 +1,13 @@
 let inputVendedor = document.getElementById('vendedor');
-let inputCargar = document.getElementById('btnCargar-1');
-stock =[];
 
 carro = [];
+
+class Producto {
+    constructor(nombre, cantidad) {
+        this.nombre = nombre;
+        this.cantidad = cantidad;
+    }
+}
 
 inputVendedor.onclick = async () => {
     const { value: password } = await Swal.fire({
@@ -47,22 +52,61 @@ try {
         const baseDatos = datos.data;
         productCards = document.getElementById('cards')
         let number = 0;
+        htmlBase = '';
         baseDatos.forEach(baseDatos => {
-            
+
             number += 1;
             productCards.innerHTML += `<div class="cards ">
             <img src="${baseDatos.img}" class="card-img-top" alt="foto de producto">
             <div class="card-body">
             <h5 class="card-title">${baseDatos.nombre}</h5>
         <p class="card-text">${baseDatos.description}</p>
-        <button type="button" id="btnCargar-${number}" class="btn  bg-grad"> Cantidad <span class="badge text-bg-secondary">${baseDatos.cant}</span></button>
+        <button type="button" class="btn  bg-grad"> Cantidad en Stock <span id="modifCant${number}" class="badge text-bg-secondary">${baseDatos.cant}</span></button>
+            <input type="text" name="cantidad" id="cantPedido-${number}" class="styleInput"  placeholder="Cantidad a pedir"> 
+        <button type="button" id="btnCargar-${number}" class="btn btn-shadown bg-grad"> Cargar al carro </button>
         </div>
         </div>`;
-    });
-    
-}
+            let guardarCantJSON = JSON.stringify(baseDatos.cant);
+            localStorage.setItem(`cantidad${number}`, guardarCantJSON)
+            let guardarJSON = JSON.stringify(baseDatos.nombre);
+            localStorage.setItem(`producto${number}`, guardarJSON);
 
-cargarStock()
+        });
+        for (let i = 1; i <= number; i++) {
+            let inputCargar = document.getElementById(`btnCargar-${i}`);
+            let inputCantPedido = document.getElementById(`cantPedido-${i}`);
+            let modificaSpan = document.getElementById(`modifCant${i}`);
+            inputCargar.addEventListener("click", function () {
+                const dropCantidad = JSON.parse(localStorage.getItem(`cantidad${i}`))
+                const dropProduct = JSON.parse(localStorage.getItem(`producto${i}`));
+                let nombre = dropProduct;
+                let cantidad = inputCantPedido.value.trim();
+                try {
+                    if (cantidad > dropCantidad) {
+                        throw new Error('Esta ingresando un valor mayor al stock')
+                    }
+                    if ((cantidad === "0") || (cantidad === '')) {
+                        throw new Error('No ingreso un valor correspondiente')
+                    }
+                } catch (error) {
+                    Swal.fire({
+                        icon: 'error',
+                        title: 'Error',
+                        text: error.message,
+                    })
+                    return;
+                }
+                producto = new Producto(nombre, cantidad);
+                carro.push(producto);
+                console.log(carro);
+                restoStock = (dropCantidad - cantidad);
+                modificaSpan.textContent = restoStock;
+            });
+        }
+
+    }
+
+    cargarStock()
 } catch (error) {
     const Toast = Swal.mixin({
         toast: true,
@@ -75,16 +119,9 @@ cargarStock()
             toast.addEventListener('mouseleave', Swal.resumeTimer)
         }
     })
-    
+
     Toast.fire({
         icon: 'error',
         title: 'Signed in successfully'
     })
-}
-
-inputCargar.onclick = async() => {
-    nombre = document.getElementsByTagName('h5').textContent;
-    
-    carro.push (nombre)
-    console.log (carro)
 }
