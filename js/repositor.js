@@ -44,7 +44,7 @@ const cargarStock = async () => {
     productCards = document.getElementById('cards')
 
     baseDatos.forEach(baseDatos => {
-        productCards.innerHTML += `<div class="cards " style="width: 18rem;">
+        productCards.innerHTML += `<div class="cards ">
         <img src="${baseDatos.img}" class="card-img-top" alt="foto de producto">
         <div class="card-body">
         <h5 class="card-title">${baseDatos.nombre}</h5>
