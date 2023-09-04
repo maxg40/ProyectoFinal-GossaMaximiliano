@@ -69,3 +69,26 @@ section{
 .btn-shadown{
     box-shadow: 2px 2px 5px black;
 }
+
+.btn-modif{
+    width: 10%;
+    background-image: linear-gradient(90deg, #ff909f 0%, #ff99a6 55%, #ff99a6 100%);
+}
+.modif-position{
+    display:flex;
+    justify-content: end;
+    background-image: linear-gradient(90deg, #e37482 0%, #FF6A88 55%, #ff99a6 100%);
+}
+.span-style{
+    background-color: rgb(212, 17, 17);
+    padding: 2px 5px 2px 5px;
+    border-radius: 100px;
+    width: 100%;
+}
+.carro {
+    width: 20%;
+}
+
+.menu-desplegable {
+    margin: 5px;
+}

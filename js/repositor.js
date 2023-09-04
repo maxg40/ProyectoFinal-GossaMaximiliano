@@ -98,14 +98,13 @@ try {
                 }
                 producto = new Producto(nombre, cantidad);
                 carro.push(producto);
-                console.log(carro);
+                localStorage.setItem('carro', JSON.stringify(carro));
                 restoStock = (dropCantidad - cantidad);
                 modificaSpan.textContent = restoStock;
+                modificarSpanCarro();
             });
         }
-
     }
-
     cargarStock()
 } catch (error) {
     const Toast = Swal.mixin({
@@ -123,5 +122,70 @@ try {
     Toast.fire({
         icon: 'error',
         title: 'Signed in successfully'
+    })
+}
+
+let inputCarro = document.getElementById('carro');
+let alertCarro = document.getElementById('carroSpan');
+let menuCarro = document.getElementById('menuCarro');
+inputCarro.onclick = () => {
+    let dropCarro = JSON.parse(localStorage.getItem('carro'));
+    menuCarro.innerHTML = '';
+    dropCarro.forEach(producto => {
+        let nombre = producto.nombre;
+        let cantidad = producto.cantidad
+        menuCarro.innerHTML += `<li class="menu-desplegable">Producto: ${nombre} - Cantidad: ${cantidad}</li> `
+    })
+}
+const modificarSpanCarro = () => {
+    let dropCarro = JSON.parse(localStorage.getItem('carro'));
+    let totalCarro = 0;
+    dropCarro.forEach(producto => {
+        let cantidad = producto.cantidad;
+        totalCarro += parseInt(cantidad);
+    })
+    alertCarro.textContent = totalCarro;
+}
+window.onload = () => {
+    const carroJSON = localStorage.getItem('carro');
+    if (carroJSON) {
+        carro = JSON.parse(carroJSON);
+    } else {
+        carro = [];
+    }
+    const swalWithBootstrapButtons = Swal.mixin({
+        customClass: {
+            confirmButton: 'btn btn-success',
+            cancelButton: 'btn btn-danger'
+        },
+        buttonsStyling: false
+    })
+
+    swalWithBootstrapButtons.fire({
+        title: 'Hay elementos cargados en tu carro',
+        text: "¿Desea borrarlos?",
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonText: 'Si, deseo borrarlos!',
+        cancelButtonText: 'No, gracias!',
+        reverseButtons: true
+    }).then((result) => {
+        if (result.isConfirmed) {
+            swalWithBootstrapButtons.fire(
+                'Carro limpio!',
+                'Todos los elementos que habia en el carro fueron borrados',
+                'success'
+            )
+            localStorage.removeItem('carro');
+        } else if (
+
+            result.dismiss === Swal.DismissReason.cancel
+        ) {
+            swalWithBootstrapButtons.fire(
+                'Cancelado',
+                'Los Elementos que habia cargados siguen disponibles',
+                'error'
+            )
+        }
     })
 }
